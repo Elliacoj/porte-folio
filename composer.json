@@ -1,0 +1,16 @@
+{
+    "name": "amaur/porte-folio",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Amaur\\App\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Elliacoj",
+            "email": "73291249+Elliacoj@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
