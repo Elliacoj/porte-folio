@@ -1,14 +1,16 @@
 @use "./modules/vars" as vars;
+
 #bookDiv {
-  width: 40%;
-  background-color: vars.$bg-color-book;
+  width: 41rem;
+  background: rgb(173,76,34);
+  background: linear-gradient(45deg, rgba(173,76,34,1) 0%, rgba(225,86,26,1) 86%);
   height: 50rem;
   border-bottom-right-radius: 1rem;
   border-top-right-radius: 1rem;
   border-left: 1rem solid vars.$border-color-book;
-  box-shadow: 4px 0 0 vars.$box-color-book;
   font-size: 1.5rem;
   position: relative;
+  z-index: 10;
 
   & > div:not(div:last-child) {
     border-radius: 2px;
@@ -21,6 +23,7 @@
     font-size: 3rem;
     width: fit-content;
     margin: 4rem auto;
+    font-weight: bold;
   }
 
   & > div:nth-child(2) {
@@ -35,4 +38,26 @@
     right: 1rem;
     font-weight: bold;
   }
+}
+
+#bookDivBack {
+  width: 41rem;
+  background-color: vars.$box-color-book;
+  height: 50rem;
+  border-bottom-right-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-left: 1.5rem solid vars.$border-color-book;
+  font-size: 1.5rem;
+  right: 9.7%;
+  position: absolute;
+  z-index: -1;
+}
+
+.pages {
+  display: none;
+  width: 38rem;
+  height: 48rem;
+  background-color: vars.$bg-color-into;
+  margin: 1rem auto;
+  box-shadow: 2px 1px 0 darken(vars.$bg-color-into, 20%), 4px 2px 0 darken(vars.$bg-color-into, 30%), 6px 3px 0 darken(vars.$bg-color-into, 40%);
 }

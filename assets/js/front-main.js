@@ -5,5 +5,5 @@ let label = new Label();
 label.init();
 
 let book = new Book();
-book.init();
+book.init().then(() => label.clickPage());
 

@@ -6,10 +6,11 @@ body {
 }
 
 #container {
-  width: 80%;
+  width: 95rem;
   margin: 4rem auto;
   display: flex;
   flex-direction: row-reverse;
+  position: relative;
 
   & > div:nth-child(1) {
     width: 10%;
