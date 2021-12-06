@@ -96,7 +96,7 @@ class Manager {
      * @param string $sql
      * @param string $class
      * @param array $data
-     * @return Object|null
+     * @return array
      */
     public static function getObject(string $sql, string $class, array $data = []):array {
         $array = [];

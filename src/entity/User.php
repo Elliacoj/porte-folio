@@ -12,8 +12,7 @@ class User {
      * @param string|null $username
      * @param string|null $password
      */
-    public function __construct(int $id = null, string $username = null, string $password = null)
-    {
+    public function __construct(int $id = null, string $username = null, string $password = null) {
         $this->id = $id;
         $this->username = $username;
         $this->password = $password;

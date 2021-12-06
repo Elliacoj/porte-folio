@@ -1,0 +1,38 @@
+@use "./modules/vars" as vars;
+#bookDiv {
+  width: 40%;
+  background-color: vars.$bg-color-book;
+  height: 50rem;
+  border-bottom-right-radius: 1rem;
+  border-top-right-radius: 1rem;
+  border-left: 1rem solid vars.$border-color-book;
+  box-shadow: 4px 0 0 vars.$box-color-book;
+  font-size: 1.5rem;
+  position: relative;
+
+  & > div:not(div:last-child) {
+    border-radius: 2px;
+    border: 2px solid vars.$border-color-book;
+    background-color: vars.$bg-color-into;
+    padding: 1rem;
+  }
+
+  & > div:nth-child(1) {
+    font-size: 3rem;
+    width: fit-content;
+    margin: 4rem auto;
+  }
+
+  & > div:nth-child(2) {
+    width: 80%;
+    margin: 8rem auto 2rem auto;
+    font-family: vars.$police-text;
+  }
+
+  & > div:nth-child(3) {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    font-weight: bold;
+  }
+}

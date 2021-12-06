@@ -1,0 +1,34 @@
+@import "book";
+
+body {
+  background-image: url("../images/font.jpg");
+  font-family: "Agency FB", sans-serif;
+}
+
+#container {
+  width: 80%;
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: row-reverse;
+
+  & > div:nth-child(1) {
+    width: 10%;
+
+    & > div {
+      position: relative;
+      background-color: #ffcc00;
+      margin-top: 1rem;
+      z-index: 5;
+      border-bottom-right-radius: 1rem;
+      border-top-right-radius: 1rem;
+      font-weight: bold;
+      writing-mode: vertical-rl;
+      text-orientation: upright;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+  }
+}
