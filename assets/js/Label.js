@@ -36,14 +36,16 @@ class Label {
             contentPage.cvPage();
 
             if(this.state === true) {
-                document.querySelectorAll(".pages")[1].style.display = "block";
+                document.getElementById("pageRight").style.display = "flex";
+                document.getElementById("subPageRight").style.display = "flex";
                 this.flipPage("-50%", "0");
 
                 setTimeout(() => {
                     document.querySelectorAll(".contentBook").forEach(e => {
                         e.style.display = "none";
                     });
-                    document.querySelectorAll(".pages")[0].style.display = "block";
+                    document.getElementById("pageLeft").style.display = "flex";
+                    document.getElementById("subPageLeft").style.display = "flex";
                 }, 100);
 
                 this.flipPage("-100%", "-1");
@@ -54,14 +56,16 @@ class Label {
 
         this.project.addEventListener("click", () => {
             if(this.state === true) {
-                document.querySelectorAll(".pages")[1].style.display = "block";
+                document.getElementById("pageRight").style.display = "flex";
+                document.getElementById("subPageRight").style.display = "flex";
                 this.flipPage("-50%", "0");
 
                 setTimeout(() => {
                     document.querySelectorAll(".contentBook").forEach(e => {
                         e.style.display = "none";
                     });
-                    document.querySelectorAll(".pages")[0].style.display = "block";
+                    document.getElementById("pageLeft").style.display = "flex";
+                    document.getElementById("subPageLeft").style.display = "flex";
                 }, 100);
 
                 this.flipPage("-100%", "-1");
@@ -78,13 +82,15 @@ class Label {
                     document.querySelectorAll(".contentBook").forEach(e => {
                         e.style.display = "block";
                     });
-                    document.querySelectorAll(".pages")[0].style.display = "none";
+                    document.getElementById("pageLeft").style.display = "none";
+                    document.getElementById("subPageLeft").style.display = "none";
                 }, 100);
 
                 this.flipPage("0", "1");
 
                 setTimeout(() => {
-                    document.querySelectorAll(".pages")[1].style.display = "none";
+                    document.getElementById("pageRight").style.display = "none";
+                    document.getElementById("subPageRight").style.display = "none";
                 }, 300);
 
                 this.state = true;

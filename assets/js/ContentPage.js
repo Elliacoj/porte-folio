@@ -1,14 +1,14 @@
 class ContentPage {
     constructor() {
-        this.pageLeft = document.querySelectorAll(".pages")[0];
-        this.pageRight = document.querySelectorAll(".pages")[1];
+        this.pageLeft = document.getElementById("pageLeft");
+        this.pageRight = document.getElementById("pageRight");
+        this.divLeft = document.createElement("div");
+        this.divRight = document.createElement("div");
     }
 
     cvPage() {
-
         this.pageLeft.innerHTML = "";
         this.pageRight.innerHTML = "";
-        /*this.pageLeft.style.transform = "rotateY(180deg)";*/
 
         let h1 = document.createElement("h1");
         let personalInfoH = document.createElement("h2");
@@ -36,34 +36,54 @@ class ContentPage {
         skillsH.innerHTML = "Compétences";
         assetH.innerHTML = "Atouts";
 
-
-        this.pageLeft.appendChild(h1);
-        this.pageLeft.appendChild(personalInfoH);
-
-        personalInfo.forEach(e => {
-            let p = document.createElement("p");
-            p.style.cssText = "display: block; width: 50%;";
-            p.innerHTML = e;
-            divPersonal.appendChild(p)
-        });
-
         divPersonal.style.cssText = "display: flex; flex-wrap: wrap;";
-        this.pageLeft.appendChild(divPersonal);
 
-        this.pageLeft.appendChild(skillsH);
+        this.divLeft.appendChild(h1);
+        this.divLeft.appendChild(personalInfoH);
+        this.data(personalInfo, divPersonal, true);
+        this.divLeft.appendChild(divPersonal);
+        this.divLeft.appendChild(skillsH);
+        this.data(skills, this.divLeft);
+        this.divRight.appendChild(assetH);
+        this.data(asset, this.divRight);
 
-        skills.forEach(e => {
-            let p = document.createElement("p");
-            p.innerHTML = e;
-            this.pageLeft.appendChild(p)
+        this.pageLeft.appendChild(this.divLeft)
+        this.pageRight.appendChild(this.divRight)
+
+        /*this.clickNext();*/
+    }
+
+    data(array, page, check = false) {
+        array.forEach(e => {
+            let div = document.createElement("div");
+            if(check === true) {
+                div.style.cssText = "width: 42%; padding: 0.5rem 4%";
+            }
+            else {
+                div.style.cssText = "padding: 1rem 4%";
+            }
+
+            div.innerHTML = e;
+            page.appendChild(div)
         });
+    }
 
-        this.pageRight.appendChild(assetH);
+    /*clickNext() {
+        setTimeout(() => {
+            /!*document.getElementById("bookDivBack").style.zIndex = "100"*!/
+            this.flipPage("-57%", "0");
+            this.flipPage("-114%", "1");
+        },2000);
+    }*/
 
-        asset.forEach(e => {
-            let p = document.createElement("p");
-            p.innerHTML = e;
-            this.pageRight.appendChild(p)
+    flipPage(translate, scale) {
+        document.getElementById("pageLeft").animate([
+            {
+                transform: 'translate(' + translate + ') scaleX(' + scale + ')'
+            },
+        ], {
+            duration: 300,
+            fill: "forwards"
         });
     }
 }

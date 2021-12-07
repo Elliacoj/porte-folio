@@ -12,7 +12,7 @@
   position: relative;
   z-index: 10;
 
-  & > div:not(div:last-child) {
+  .contentBook {
     border-radius: 2px;
     border: 2px solid vars.$border-color-book;
     background-color: vars.$bg-color-into;
@@ -59,5 +59,9 @@
   height: 48rem;
   background-color: vars.$bg-color-into;
   margin: 1rem auto;
-  box-shadow: 2px 1px 0 darken(vars.$bg-color-into, 20%), 4px 2px 0 darken(vars.$bg-color-into, 30%), 6px 3px 0 darken(vars.$bg-color-into, 40%);
+}
+
+.subPages {
+  position: absolute;
+  z-index: -2;
 }
