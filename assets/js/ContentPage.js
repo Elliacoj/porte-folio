@@ -4,6 +4,8 @@ class ContentPage {
         this.pageRight = document.getElementById("pageRight");
         this.divLeft = document.createElement("div");
         this.divRight = document.createElement("div");
+        this.buttonNext = document.createElement("div");
+        this.buttonPrevious = document.createElement("div");
     }
 
     cvPage() {
@@ -16,7 +18,9 @@ class ContentPage {
         let assetH = document.createElement("h2");
         let divPersonal = document.createElement("div");
         let personalInfo = [
-            "Rue de la Station 5", "6590", "Momignies", "Belgique", "+32 493 07 90 96", "amaury.jocaille@hotmail.com", "Permis B + voiture"
+            "<i class='far fa-map'></i> Rue de la Station 5", "<i class='fas fa-mail-bulk'></i> 6590", "<i class='far fa-flag'></i> Momignies",
+            "<i class='fas fa-globe-europe'></i> Belgique", "<i class='fas fa-phone-square-alt'></i> +32 493 07 90 96", "<i class='fas fa-at'></i> amaury.jocaille@hotmail.com",
+            "<i class='fas fa-car'></i> Permis B + voiture"
         ];
 
         let skills = [
@@ -35,6 +39,7 @@ class ContentPage {
         personalInfoH.innerHTML = "Informations personelles";
         skillsH.innerHTML = "Compétences";
         assetH.innerHTML = "Atouts";
+        this.buttonNext.innerHTML = "Page suivante";
 
         divPersonal.style.cssText = "display: flex; flex-wrap: wrap;";
 
@@ -47,10 +52,16 @@ class ContentPage {
         this.divRight.appendChild(assetH);
         this.data(asset, this.divRight);
 
+        this.divRight.appendChild(this.buttonNext);
         this.pageLeft.appendChild(this.divLeft)
         this.pageRight.appendChild(this.divRight)
 
-        /*this.clickNext();*/
+        this.clickNext();
+    }
+
+    projectPage() {
+        this.pageLeft.innerHTML = "";
+        this.pageRight.innerHTML = "";
     }
 
     data(array, page, check = false) {
@@ -60,7 +71,7 @@ class ContentPage {
                 div.style.cssText = "width: 42%; padding: 0.5rem 4%";
             }
             else {
-                div.style.cssText = "padding: 1rem 4%";
+                div.style.cssText = "padding: 0.7rem 4%";
             }
 
             div.innerHTML = e;
@@ -68,22 +79,26 @@ class ContentPage {
         });
     }
 
-    /*clickNext() {
+    clickNext() {
         setTimeout(() => {
-            /!*document.getElementById("bookDivBack").style.zIndex = "100"*!/
+            document.getElementById("bookDivBack").style.zIndex = "100";
             this.flipPage("-57%", "0");
             this.flipPage("-114%", "1");
+            setTimeout(() => {
+                document.getElementById("bookDivBack").style.zIndex = "-1";
+            }, 600);
         },2000);
-    }*/
+
+    }
 
     flipPage(translate, scale) {
-        document.getElementById("pageLeft").animate([
+        document.getElementById("pageRight").animate([
             {
                 transform: 'translate(' + translate + ') scaleX(' + scale + ')'
             },
         ], {
             duration: 300,
-            fill: "forwards"
+            endDelay: 200
         });
     }
 }

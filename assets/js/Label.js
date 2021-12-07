@@ -32,10 +32,10 @@ class Label {
      */
     clickPage() {
         this.cv.addEventListener("click", () => {
-            let contentPage = new ContentPage();
-            contentPage.cvPage();
-
             if(this.state === true) {
+                let contentPage = new ContentPage();
+                contentPage.cvPage();
+
                 document.getElementById("pageRight").style.display = "flex";
                 document.getElementById("subPageRight").style.display = "flex";
                 this.flipPage("-50%", "0");
@@ -56,6 +56,9 @@ class Label {
 
         this.project.addEventListener("click", () => {
             if(this.state === true) {
+                let contentPage = new ContentPage();
+                contentPage.projectPage();
+
                 document.getElementById("pageRight").style.display = "flex";
                 document.getElementById("subPageRight").style.display = "flex";
                 this.flipPage("-50%", "0");
