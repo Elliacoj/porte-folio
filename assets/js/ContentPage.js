@@ -8,7 +8,7 @@ class ContentPage {
         this.buttonPrevious = document.createElement("div");
     }
 
-    cvPage() {
+    async cvPage() {
         this.pageLeft.innerHTML = "";
         this.pageRight.innerHTML = "";
 
@@ -53,10 +53,8 @@ class ContentPage {
         this.data(asset, this.divRight);
 
         this.divRight.appendChild(this.buttonNext);
-        this.pageLeft.appendChild(this.divLeft)
-        this.pageRight.appendChild(this.divRight)
-
-        this.clickNext();
+        this.pageLeft.appendChild(this.divLeft);
+        this.pageRight.appendChild(this.divRight);
     }
 
     projectPage() {
@@ -80,15 +78,11 @@ class ContentPage {
     }
 
     clickNext() {
-        setTimeout(() => {
-            document.getElementById("bookDivBack").style.zIndex = "100";
+        this.buttonNext.addEventListener("click", () => {
+            console.log("ok");
             this.flipPage("-57%", "0");
             this.flipPage("-114%", "1");
-            setTimeout(() => {
-                document.getElementById("bookDivBack").style.zIndex = "-1";
-            }, 600);
-        },2000);
-
+        })
     }
 
     flipPage(translate, scale) {

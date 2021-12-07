@@ -34,7 +34,7 @@ class Label {
         this.cv.addEventListener("click", () => {
             if(this.state === true) {
                 let contentPage = new ContentPage();
-                contentPage.cvPage();
+                contentPage.cvPage().then(() => contentPage.clickNext());
 
                 document.getElementById("pageRight").style.display = "flex";
                 document.getElementById("subPageRight").style.display = "flex";
@@ -46,10 +46,10 @@ class Label {
                     });
                     document.getElementById("pageLeft").style.display = "flex";
                     document.getElementById("subPageLeft").style.display = "flex";
+                    document.getElementById("bookDivBack").style.zIndex = "10";
                 }, 100);
 
                 this.flipPage("-100%", "-1");
-
                 this.state = false;
             }
         });
@@ -69,16 +69,17 @@ class Label {
                     });
                     document.getElementById("pageLeft").style.display = "flex";
                     document.getElementById("subPageLeft").style.display = "flex";
+                    document.getElementById("bookDivBack").style.zIndex = "10";
                 }, 100);
 
                 this.flipPage("-100%", "-1");
-
                 this.state = false;
             }
         });
 
         this.home.addEventListener("click", () => {
             if(this.state === false) {
+                document.getElementById("bookDivBack").style.zIndex = "-1";
                 this.flipPage("-50%", "0");
 
                 setTimeout(() => {
