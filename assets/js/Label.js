@@ -1,4 +1,9 @@
+import {ContentPage} from "./ContentPage";
+
 class Label {
+    /**
+     * Constructor
+     */
     constructor() {
         this.container = document.getElementById("container");
         this.home = document.createElement("div");
@@ -8,10 +13,13 @@ class Label {
         this.state = true;
     }
 
+    /**
+     * Init the label into container
+     */
     init() {
         this.home.innerHTML = "Accueil";
         this.cv.innerHTML = "CV";
-        this.project.innerHTML = "PROJET";
+        this.project.innerHTML = "PROJETS";
 
         this.labelDiv.appendChild(this.home);
         this.labelDiv.appendChild(this.cv);
@@ -19,8 +27,14 @@ class Label {
         this.container.appendChild(this.labelDiv);
     }
 
+    /**
+     * Add event click from label buttons
+     */
     clickPage() {
         this.cv.addEventListener("click", () => {
+            let contentPage = new ContentPage();
+            contentPage.cvPage();
+
             if(this.state === true) {
                 document.querySelectorAll(".pages")[1].style.display = "block";
                 this.flipPage("-50%", "0");
@@ -80,6 +94,11 @@ class Label {
 
     }
 
+    /**
+     * Animation flip page
+     * @param translate
+     * @param scale
+     */
     flipPage(translate, scale) {
         document.getElementById("bookDiv").animate([
             {

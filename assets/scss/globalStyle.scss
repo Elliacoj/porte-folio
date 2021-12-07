@@ -1,4 +1,5 @@
-@import "book";
+@use "book";
+@use "contentPage";
 
 body {
   background-image: url("../images/font.jpg");
