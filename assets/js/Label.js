@@ -20,6 +20,8 @@ class Label {
         this.home.innerHTML = "Accueil";
         this.cv.innerHTML = "CV";
         this.project.innerHTML = "PROJETS";
+        this.labelDiv.style.zIndex = "15";
+        this.labelDiv.style.position = "relative";
 
         this.labelDiv.appendChild(this.home);
         this.labelDiv.appendChild(this.cv);
@@ -36,6 +38,7 @@ class Label {
                 let contentPage = new ContentPage();
                 contentPage.cvPage(0).then(() => contentPage.clickNext());
                 document.getElementById("pageRight").style.display = "flex";
+                document.getElementById("bookDiv").classList.add("boxShadow");
                 document.getElementById("subPageRight").style.display = "flex";
                 this.flipPage("-50%", "0");
 
@@ -59,6 +62,7 @@ class Label {
                 contentPage.projectPage();
 
                 document.getElementById("pageRight").style.display = "flex";
+                document.getElementById("bookDiv").classList.add("boxShadow");
                 document.getElementById("subPageRight").style.display = "flex";
                 this.flipPage("-50%", "0");
 
@@ -86,6 +90,7 @@ class Label {
                         e.style.display = "block";
                     });
                     document.getElementById("pageLeft").style.display = "none";
+                    document.getElementById("bookDiv").classList.remove("boxShadow");
                     document.getElementById("subPageLeft").style.display = "none";
                 }, 100);
 

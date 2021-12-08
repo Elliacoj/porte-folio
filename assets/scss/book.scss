@@ -51,6 +51,7 @@
   right: 9.7%;
   position: absolute;
   z-index: -1;
+  box-shadow: rgb(66, 66, 66) 2px 2px 5px;
 }
 
 .pages {
@@ -64,4 +65,8 @@
 .subPages {
   position: absolute;
   z-index: -2;
+}
+
+.boxShadow {
+  box-shadow: rgb(66, 66, 66) -2px 2px 5px;
 }

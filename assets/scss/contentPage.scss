@@ -30,15 +30,21 @@
 
 #pageRight {
   position: relative;
-  h2:first-child {
-    padding-top: 1.5rem;
-  }
 
   .buttonNext {
     position: absolute;
     cursor: pointer;
     bottom: 1rem;
     right: 1rem;
+  }
+}
+
+#pageLeft {
+  .buttonPrevious {
+    position: absolute;
+    cursor: pointer;
+    bottom: 1rem;
+    left: 1rem;
   }
 }
 
@@ -49,7 +55,7 @@
 #subPageRight, #subPageLeft {
   box-shadow: 2px 1px 0 darken(vars.$bg-color-into, 20%), 4px 2px 0 darken(vars.$bg-color-into, 30%), 6px 3px 0 darken(vars.$bg-color-into, 40%);
   position: absolute;
-  top: 0.15%;
+  top: 0;
   z-index: -2;
   left: 3.7%;
 }
