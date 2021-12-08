@@ -34,8 +34,7 @@ class Label {
         this.cv.addEventListener("click", () => {
             if(this.state === true) {
                 let contentPage = new ContentPage();
-                contentPage.cvPage().then(() => contentPage.clickNext());
-
+                contentPage.cvPage(0).then(() => contentPage.clickNext());
                 document.getElementById("pageRight").style.display = "flex";
                 document.getElementById("subPageRight").style.display = "flex";
                 this.flipPage("-50%", "0");

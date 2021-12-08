@@ -29,8 +29,16 @@
 }
 
 #pageRight {
+  position: relative;
   h2:first-child {
     padding-top: 1.5rem;
+  }
+
+  .buttonNext {
+    position: absolute;
+    cursor: pointer;
+    bottom: 1rem;
+    right: 1rem;
   }
 }
 
