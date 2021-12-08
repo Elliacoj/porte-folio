@@ -2,12 +2,11 @@
 
 #bookDiv {
   width: 41rem;
-  background: rgb(173,76,34);
-  background: linear-gradient(45deg, rgba(173,76,34,1) 0%, rgba(225,86,26,1) 86%);
+  background: url("../images/font-book.jpg");
   height: 50rem;
   border-bottom-right-radius: 1rem;
   border-top-right-radius: 1rem;
-  border-left: 1rem solid vars.$border-color-book;
+  border-left: 1rem solid #b1acaa;
   font-size: 1.5rem;
   position: relative;
   z-index: 10;
@@ -42,16 +41,16 @@
 
 #bookDivBack {
   width: 41rem;
-  background-color: vars.$box-color-book;
+  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url("../images/font-book.jpg");
   height: 50rem;
   border-bottom-right-radius: 1rem;
   border-top-right-radius: 1rem;
-  border-left: 1.5rem solid vars.$border-color-book;
+  border-left: 1.5rem solid #b1acaa;
   font-size: 1.5rem;
   right: 9.7%;
   position: absolute;
   z-index: -1;
-  box-shadow: rgb(66, 66, 66) 2px 2px 5px;
+  box-shadow: 4px 2px 3px rgb(66, 66, 66);
 }
 
 .pages {
@@ -68,5 +67,5 @@
 }
 
 .boxShadow {
-  box-shadow: rgb(66, 66, 66) -2px 2px 5px;
+  box-shadow: 0 2px 3px rgb(66, 66, 66);
 }
