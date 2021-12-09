@@ -58,7 +58,7 @@ class Label {
             else if(this.state !== "cv") {
                 let contentPage = new ContentPageCv();
                 contentPage.init();
-                contentPage.cvPage(2);
+                contentPage.cvPage(2, 1);
             }
         });
 

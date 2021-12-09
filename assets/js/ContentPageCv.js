@@ -85,9 +85,10 @@ class ContentPageCv {
             }, 320);
         }
         else if(action === 2) {
-            if(book === 0) {
+            if(book === 1) {
                 this.flipPage("-114%", "-1", document.getElementById("pageLeft"));
             }
+            this.divTwo.style.cssText = "transform: rotateY(0)";
             document.getElementById("bookDiv").style.zIndex = "15";
             this.subPageLeft.innerHTML = "";
             this.subPageLeft.appendChild(this.divOne);
@@ -95,7 +96,7 @@ class ContentPageCv {
             setTimeout(() => {
                 this.pageLeft.innerHTML = "";
                 this.pageLeft.appendChild(this.divTwo);
-                this.divTwo.style.cssText = "transform: rotateY(0)";
+
             }, 150);
 
             setTimeout(() => {
