@@ -36,7 +36,8 @@ class Label {
         this.cv.addEventListener("click", () => {
             if(this.state === true) {
                 let contentPage = new ContentPage();
-                contentPage.cvPage(0).then(() => contentPage.clickNext());
+                contentPage.init();
+                contentPage.cvPage(0);
                 document.getElementById("pageRight").style.display = "flex";
                 document.getElementById("bookDiv").classList.add("boxShadow");
                 document.getElementById("subPageRight").style.display = "flex";

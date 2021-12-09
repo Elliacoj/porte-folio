@@ -31,7 +31,7 @@
 #pageRight {
   position: relative;
 
-  .buttonNext {
+  #buttonNext {
     position: absolute;
     cursor: pointer;
     bottom: 1rem;
@@ -39,8 +39,17 @@
   }
 }
 
-#pageLeft {
-  .buttonPrevious {
+#pageRight, #subPageRight, #pageLeft {
+  #buttonNext {
+    position: absolute;
+    cursor: pointer;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+#pageLeft, #subPageLeft, #pageRight {
+  #buttonPrevious {
     position: absolute;
     cursor: pointer;
     bottom: 1rem;

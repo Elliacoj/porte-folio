@@ -2,7 +2,9 @@
 @use "contentPage";
 
 body {
-  background-image: url("../images/font.jpg");
+
+  background: url("../images/font.jpg");
+  background-size: 100%;
   font-family: "Agency FB", sans-serif;
 }
 
