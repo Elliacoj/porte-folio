@@ -57,6 +57,7 @@ class Label {
                     document.getElementById("pageLeft").style.display = "flex";
                     document.getElementById("subPageLeft").style.display = "flex";
                     document.getElementById("bookDivBack").style.zIndex = "10";
+
                 }, 100);
 
                 this.flipPage("-100%", "-1");
@@ -90,7 +91,10 @@ class Label {
                     });
                     document.getElementById("pageLeft").style.display = "flex";
                     document.getElementById("subPageLeft").style.display = "flex";
-                    document.getElementById("bookDivBack").style.zIndex = "10";
+
+                    if(screen.width > "850") {
+                        document.getElementById("bookDivBack").style.zIndex = "10";
+                    }
                 }, 100);
 
                 this.flipPage("-100%", "-1");
@@ -104,7 +108,10 @@ class Label {
 
         this.home.addEventListener("click", () => {
             if(this.state !== "home") {
-                document.getElementById("bookDivBack").style.zIndex = "-1";
+                if(screen.width > "850") {
+                    document.getElementById("bookDivBack").style.zIndex = "-1";
+                }
+
                 this.flipPage("-50%", "0");
 
                 setTimeout(() => {

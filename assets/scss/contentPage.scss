@@ -39,7 +39,7 @@
   }
 }
 
-#pageRight, #subPageRight, #pageLeft {
+#pageRight, #subPageRight, #pageLeft, #subPageLeft {
   .buttonNext {
     position: absolute;
     cursor: pointer;
@@ -48,7 +48,7 @@
   }
 }
 
-#pageLeft, #subPageLeft, #pageRight {
+#pageLeft, #subPageLeft, #pageRight, #subPageRight {
   .buttonPrevious {
     position: absolute;
     cursor: pointer;

@@ -124,7 +124,7 @@ class ContentPageCv {
      * Init the content of cv into pages for responsive
      * @returns
      */
-    cvPageResponsive(action = 0, book = 0) {
+    cvPageResponsive(action = 0, page = 0) {
         if(action === 0) {
             this.pageRight.innerHTML = "";
             this.pageRight.appendChild(this.divOne);
@@ -144,45 +144,66 @@ class ContentPageCv {
                     this.pageRight.innerHTML = '';
                     this.pageRight.appendChild(this.divTwo);
                 }, 10);
-
             }, 320);
         }
         else if(action === 2) {
-            if(book === 1) {
-                this.flipPage("-114%", "-1", document.getElementById("pageLeft"));
-            }
-
-            this.divTwo.style.cssText = "transform: rotateY(0)";
-            document.getElementById("bookDiv").style.zIndex = "15";
-            this.subPageLeft.innerHTML = "";
-            this.subPageLeft.appendChild(this.divOne);
-
-            setTimeout(() => {
+            if(page === 1) {
                 this.pageLeft.innerHTML = "";
-                this.pageLeft.appendChild(this.divTwo);
+                this.pageLeft.appendChild(this.divOne);
 
-            }, 150);
+                /*setTimeout(() => {
+                    this.pageRight.style.display = "none";
+                    this.pageRight.innerHTML = this.subPageRight.innerHTML;
 
-            setTimeout(() => {
-                this.subPageRight.innerHTML = this.pageLeft.innerHTML;
-                this.pageRight.innerHTML = this.pageLeft.innerHTML;
-                this.pageLeft.style.display = "none";
-                this.pageRight.style.display = "none";
-                this.pageLeft.innerHTML = this.subPageLeft.innerHTML;
+                    this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
 
-                this.flipPage("0%", "1", document.getElementById("pageLeft"), 1);
+                    setTimeout(() => {
+                        this.pageRight.style.display = "flex";
+                        this.pageRight.innerHTML = '';
+                        this.pageRight.appendChild(this.divThree);
+                    }, 10);
+                }, 320);*/
+            }
+            else if(page === 2) {
+                this.subPageRight.innerHTML = "";
+                this.subPageRight.appendChild(this.divThree);
 
                 setTimeout(() => {
-                    document.getElementById("bookDiv").style.zIndex = "0";
-                    this.pageRight.style.display = "flex";
-                    this.pageRight.innerHTML = '';
-                    this.pageRight.appendChild(this.divTwo);
-                    this.pageLeft.style.display = "flex";
-                    this.pageLeft.innerHTML = '';
-                    this.pageLeft.appendChild(this.divOne);
-                }, 10);
+                    this.pageRight.style.display = "none";
+                    this.pageRight.innerHTML = this.subPageRight.innerHTML;
 
-            }, 320);
+                    this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
+
+                    setTimeout(() => {
+                        this.pageRight.style.display = "flex";
+                        this.pageRight.innerHTML = '';
+                        this.pageRight.appendChild(this.divThree);
+                    }, 10);
+                }, 320);
+            }
+            else if(page === 3) {
+
+            }
+            else if(page === 4) {
+                this.subPageRight.innerHTML = "";
+                this.subPageRight.appendChild(this.divFour);
+
+                setTimeout(() => {
+                    this.pageRight.style.display = "none";
+                    this.pageRight.innerHTML = this.subPageRight.innerHTML;
+
+                    this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
+
+                    setTimeout(() => {
+                        this.pageRight.style.display = "flex";
+                        this.pageRight.innerHTML = '';
+                        this.pageRight.appendChild(this.divFour);
+                    }, 10);
+                }, 320);
+            }
+            else if(page === 5) {
+
+            }
         }
     }
 
@@ -223,13 +244,7 @@ class ContentPageCv {
         this.divOne.appendChild(skillsH);
         this.data(skills, this.divOne);
 
-        if(screen.width <= "850") {
-            let buttonNext = document.createElement("div");
-            buttonNext.innerHTML = "Page suivante >";
-            buttonNext.className = "buttonNext";
-            this.divOne.appendChild(buttonNext);
-            buttonNext.addEventListener("click", () => this.click(1, document.getElementById("pageRight")));
-        }
+        this.addButton("buttonNext", document.getElementById("pageRight"), 1, "Page suivante >", this.divOne, 0);
     }
 
     /**
@@ -250,15 +265,9 @@ class ContentPageCv {
         this.data(asset, this.divTwo);
 
         this.divTwo.appendChild(buttonNext);
-        buttonNext.addEventListener("click", () => this.click(2, document.getElementById("pageRight")));
+        buttonNext.addEventListener("click", () => this.click(2, document.getElementById("pageRight"), 2));
 
-        if(screen.width <= "850") {
-            let buttonPrevious = document.createElement("div");
-            buttonPrevious.innerHTML = "< Page précédente";
-            buttonPrevious.className = "buttonPrevious";
-            this.divOne.appendChild(buttonPrevious);
-            buttonPrevious.addEventListener("click", () => this.click(2, document.getElementById("pageLeft")));
-        }
+        this.addButton("buttonPrevious", document.getElementById("pageLeft"), 2, "< Page précédente", this.divTwo, 1);
     }
 
     /**
@@ -282,7 +291,8 @@ class ContentPageCv {
             }
         }
         this.divThree.appendChild(buttonPrevious);
-        buttonPrevious.addEventListener("click", () => this.click(2, document.getElementById("pageLeft")));
+        buttonPrevious.addEventListener("click", () => this.click(2, document.getElementById("pageLeft"), 3));
+        this.addButton("buttonNext", document.getElementById("pageRight"), 2, "Page suivante >", this.divThree, 4);
     }
 
     /**
@@ -297,6 +307,7 @@ class ContentPageCv {
                 this.divFour.appendChild(div);
             }
         }
+        this.addButton("buttonPrevious", document.getElementById("pageLeft"), 2, "< Page précédente", this.divFour, 5);
     }
 
     /**
@@ -331,15 +342,21 @@ class ContentPageCv {
     /**
      * Change page right on click
      */
-    click(action, element) {
+    click(action, element, page = 0) {
         if(screen.width <= "850") {
-            this.cvPageResponsive(action);
+            this.cvPageResponsive(action, page);
         }
         else {
             this.cvPage(action);
         }
 
-        this.flipPage("-114%", "-1", element);
+        if(page === 1) {
+            this.flipPage("114%", "-1", element);
+        }
+        else {
+            this.flipPage("-114%", "-1", element);
+        }
+
     }
 
     /**
@@ -369,6 +386,25 @@ class ContentPageCv {
                 duration: duration,
                 fill: "forwards"
             });
+        }
+    }
+
+    /**
+     * Create a button
+     * @param type
+     * @param element
+     * @param action
+     * @param content
+     * @param container
+     * @param page
+     */
+    addButton(type, element, action, content, container, page) {
+        if(screen.width <= "850") {
+            let button = document.createElement("div");
+            button.innerHTML = content;
+            button.className = type;
+            container.appendChild(button);
+            button.addEventListener("click", () => this.click(action, element, page));
         }
     }
 }
