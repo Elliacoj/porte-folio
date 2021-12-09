@@ -37,10 +37,17 @@ class Label {
             if(this.state === "home") {
                 let contentPage = new ContentPageCv();
                 contentPage.init();
-                contentPage.cvPage(0);
+                if(screen.width > "850") {
+                    contentPage.cvPage(0);
+                }
+                else {
+                    contentPage.cvPageResponsive(0);
+                }
+
                 document.getElementById("pageRight").style.display = "flex";
                 document.getElementById("bookDiv").classList.add("boxShadow");
                 document.getElementById("subPageRight").style.display = "flex";
+                document.getElementById("bookDivBack").style.background = "url(\"./build/images/font-book.jpg\")";
                 this.flipPage("-50%", "0");
 
                 setTimeout(() => {
@@ -54,6 +61,10 @@ class Label {
 
                 this.flipPage("-100%", "-1");
                 this.state = "cv";
+
+                if(screen.width < "1400" && screen.width > "850") {
+                    this.container.style.width = "95rem";
+                }
             }
             else if(this.state !== "cv") {
                 let contentPage = new ContentPageCv();
@@ -70,6 +81,7 @@ class Label {
                 document.getElementById("pageRight").style.display = "flex";
                 document.getElementById("bookDiv").classList.add("boxShadow");
                 document.getElementById("subPageRight").style.display = "flex";
+                document.getElementById("bookDivBack").style.background = "url(\"./build/images/font-book.jpg\")";
                 this.flipPage("-50%", "0");
 
                 setTimeout(() => {
@@ -83,6 +95,10 @@ class Label {
 
                 this.flipPage("-100%", "-1");
                 this.state = "project";
+
+                if(screen.width < "1400" && screen.width > "850") {
+                    this.container.style.width = "95rem";
+                }
             }
         });
 
@@ -96,7 +112,7 @@ class Label {
                         e.style.display = "block";
                     });
                     document.getElementById("pageLeft").style.display = "none";
-                    document.getElementById("bookDiv").classList.remove("boxShadow");
+
                     document.getElementById("subPageLeft").style.display = "none";
                 }, 100);
 
@@ -105,9 +121,15 @@ class Label {
                 setTimeout(() => {
                     document.getElementById("pageRight").style.display = "none";
                     document.getElementById("subPageRight").style.display = "none";
+                    document.getElementById("bookDiv").classList.remove("boxShadow");
+                    document.getElementById("bookDivBack").style.background = "linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(\"./build/images/font-book.jpg\")";
                 }, 300);
 
                 this.state = "home";
+
+                if(screen.width < "1400" && screen.width > "850") {
+                    this.container.style.width = "50rem";
+                }
             }
         });
 
@@ -120,14 +142,26 @@ class Label {
      * @param scale
      */
     flipPage(translate, scale) {
-        document.getElementById("bookDiv").animate([
-            {
-                transform: 'translate(' + translate + ') scaleX(' + scale + ')'
-            },
-        ], {
-            duration: 300,
-            fill: "forwards"
-        });
+        if(screen.width <= "850") {
+            document.getElementById("bookDiv").animate([
+                {
+                    transform: 'translateY(' + translate + ') scaleY(' + scale + ')'
+                },
+            ], {
+                duration: 300,
+                fill: "forwards"
+            });
+        }
+        else {
+            document.getElementById("bookDiv").animate([
+                {
+                    transform: 'translate(' + translate + ') scaleX(' + scale + ')'
+                },
+            ], {
+                duration: 300,
+                fill: "forwards"
+            });
+        }
     }
 }
 export {Label};

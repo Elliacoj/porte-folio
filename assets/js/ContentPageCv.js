@@ -121,41 +121,115 @@ class ContentPageCv {
     }
 
     /**
+     * Init the content of cv into pages for responsive
+     * @returns
+     */
+    cvPageResponsive(action = 0, book = 0) {
+        if(action === 0) {
+            this.pageRight.innerHTML = "";
+            this.pageRight.appendChild(this.divOne);
+        }
+        else if(action === 1) {
+            this.subPageRight.innerHTML = "";
+            this.subPageRight.appendChild(this.divTwo);
+
+            setTimeout(() => {
+                this.pageRight.style.display = "none";
+                this.pageRight.innerHTML = this.subPageRight.innerHTML;
+
+                this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
+
+                setTimeout(() => {
+                    this.pageRight.style.display = "flex";
+                    this.pageRight.innerHTML = '';
+                    this.pageRight.appendChild(this.divTwo);
+                }, 10);
+
+            }, 320);
+        }
+        else if(action === 2) {
+            if(book === 1) {
+                this.flipPage("-114%", "-1", document.getElementById("pageLeft"));
+            }
+
+            this.divTwo.style.cssText = "transform: rotateY(0)";
+            document.getElementById("bookDiv").style.zIndex = "15";
+            this.subPageLeft.innerHTML = "";
+            this.subPageLeft.appendChild(this.divOne);
+
+            setTimeout(() => {
+                this.pageLeft.innerHTML = "";
+                this.pageLeft.appendChild(this.divTwo);
+
+            }, 150);
+
+            setTimeout(() => {
+                this.subPageRight.innerHTML = this.pageLeft.innerHTML;
+                this.pageRight.innerHTML = this.pageLeft.innerHTML;
+                this.pageLeft.style.display = "none";
+                this.pageRight.style.display = "none";
+                this.pageLeft.innerHTML = this.subPageLeft.innerHTML;
+
+                this.flipPage("0%", "1", document.getElementById("pageLeft"), 1);
+
+                setTimeout(() => {
+                    document.getElementById("bookDiv").style.zIndex = "0";
+                    this.pageRight.style.display = "flex";
+                    this.pageRight.innerHTML = '';
+                    this.pageRight.appendChild(this.divTwo);
+                    this.pageLeft.style.display = "flex";
+                    this.pageLeft.innerHTML = '';
+                    this.pageLeft.appendChild(this.divOne);
+                }, 10);
+
+            }, 320);
+        }
+    }
+
+    /**
      * Content for page one of CV
      */
     pageOneCV() {
-            let h1 = document.createElement("h1");
-            let personalInfoH = document.createElement("h2");
-            let skillsH = document.createElement("h2");
-            let divPersonal = document.createElement("div");
+        let h1 = document.createElement("h1");
+        let personalInfoH = document.createElement("h2");
+        let skillsH = document.createElement("h2");
+        let divPersonal = document.createElement("div");
 
-            let personalInfo = [
-                "<i class='far fa-map'></i> Rue de la Station 5", "<i class='fas fa-mail-bulk'></i> 6590", "<i class='far fa-flag'></i> Momignies",
-                "<i class='fas fa-globe-europe'></i> Belgique", "<i class='fas fa-phone-square-alt'></i> +32 493 07 90 96", "<i class='fas fa-at'></i> amaury.jocaille@hotmail.com",
-                "<i class='fas fa-car'></i> Permis B + voiture"
-            ];
+        let personalInfo = [
+            "<i class='far fa-map'></i> Rue de la Station 5", "<i class='fas fa-mail-bulk'></i> 6590", "<i class='far fa-flag'></i> Momignies",
+            "<i class='fas fa-globe-europe'></i> Belgique", "<i class='fas fa-phone-square-alt'></i> +32 493 07 90 96", "<i class='fas fa-at'></i> amaury.jocaille@hotmail.com",
+            "<i class='fas fa-car'></i> Permis B + voiture"
+        ];
 
-            let skills = [
-                "A l'aise avec l'intégration du front-end et le back-end (avec une préférence pour le back-end).",
-                "Connaissance de plusieurs language de programmation (PHP, JS, HTML, CSS, SQL).",
-                "Connaissance de plusieurs gestionnaires de paquets (Composer, npm)",
-                "Peux créer et gérer une base de données complexe.",
-                "Développe sur le logiciel PhpStorm.",
-                "Connaissance basique sur Prestashop et WordPress."
-            ];
+        let skills = [
+            "A l'aise avec l'intégration du front-end et le back-end (avec une préférence pour le back-end).",
+            "Connaissance de plusieurs language de programmation (PHP, JS, HTML, CSS, SQL).",
+            "Connaissance de plusieurs gestionnaires de paquets (Composer, npm)",
+            "Peux créer et gérer une base de données complexe.",
+            "Développe sur le logiciel PhpStorm.",
+            "Connaissance basique sur Prestashop et WordPress."
+        ];
 
-            h1.innerHTML = "AMAURY JOCAILLE";
-            personalInfoH.innerHTML = "Informations personelles";
-            skillsH.innerHTML = "Compétences";
+        h1.innerHTML = "AMAURY JOCAILLE";
+        personalInfoH.innerHTML = "Informations personelles";
+        skillsH.innerHTML = "Compétences";
 
-            divPersonal.style.cssText = "display: flex; flex-wrap: wrap;";
+        divPersonal.style.cssText = "display: flex; flex-wrap: wrap;";
 
-            this.divOne.appendChild(h1);
-            this.divOne.appendChild(personalInfoH);
-            this.data(personalInfo, divPersonal, true);
-            this.divOne.appendChild(divPersonal);
-            this.divOne.appendChild(skillsH);
-            this.data(skills, this.divOne);
+        this.divOne.appendChild(h1);
+        this.divOne.appendChild(personalInfoH);
+        this.data(personalInfo, divPersonal, true);
+        this.divOne.appendChild(divPersonal);
+        this.divOne.appendChild(skillsH);
+        this.data(skills, this.divOne);
+
+        if(screen.width <= "850") {
+            let buttonNext = document.createElement("div");
+            buttonNext.innerHTML = "Page suivante >";
+            buttonNext.className = "buttonNext";
+            this.divOne.appendChild(buttonNext);
+            buttonNext.addEventListener("click", () => this.click(1, document.getElementById("pageRight")));
+        }
     }
 
     /**
@@ -176,7 +250,15 @@ class ContentPageCv {
         this.data(asset, this.divTwo);
 
         this.divTwo.appendChild(buttonNext);
-        buttonNext.addEventListener("click", () => this.click(1, document.getElementById("pageRight")));
+        buttonNext.addEventListener("click", () => this.click(2, document.getElementById("pageRight")));
+
+        if(screen.width <= "850") {
+            let buttonPrevious = document.createElement("div");
+            buttonPrevious.innerHTML = "< Page précédente";
+            buttonPrevious.className = "buttonPrevious";
+            this.divOne.appendChild(buttonPrevious);
+            buttonPrevious.addEventListener("click", () => this.click(2, document.getElementById("pageLeft")));
+        }
     }
 
     /**
@@ -250,7 +332,13 @@ class ContentPageCv {
      * Change page right on click
      */
     click(action, element) {
-        this.cvPage(action);
+        if(screen.width <= "850") {
+            this.cvPageResponsive(action);
+        }
+        else {
+            this.cvPage(action);
+        }
+
         this.flipPage("-114%", "-1", element);
     }
 
@@ -262,14 +350,26 @@ class ContentPageCv {
      * @param duration
      */
     flipPage(translate, scale, page, duration = 300) {
-        page.animate([
-            {
-                transform: 'translate(' + translate + ') scaleX(' + scale + ')',
-            },
-        ], {
-            duration: duration,
-            fill: "forwards"
-        });
+        if(screen.width <= "850") {
+            page.animate([
+                {
+                    transform: 'translateY(' + translate + ') scaleY(' + scale + ')'
+                },
+            ], {
+                duration: duration,
+                fill: "forwards"
+            });
+        }
+        else {
+            page.animate([
+                {
+                    transform: 'translate(' + translate + ') scaleX(' + scale + ')'
+                },
+            ], {
+                duration: duration,
+                fill: "forwards"
+            });
+        }
     }
 }
 export {ContentPageCv}

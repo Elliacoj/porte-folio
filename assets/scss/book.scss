@@ -6,7 +6,8 @@
   height: 50rem;
   border-bottom-right-radius: 1rem;
   border-top-right-radius: 1rem;
-  border-left: 1rem solid #b1acaa;
+  border-left: 1rem solid;
+  border-image: url("../images/font-book.jpg");
   font-size: 1.5rem;
   position: relative;
   z-index: 10;
@@ -40,17 +41,18 @@
 }
 
 #bookDivBack {
-  width: 41rem;
-  background: linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url("../images/font-book.jpg");
+  width: 40.75rem;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("../images/font-book.jpg");
   height: 50rem;
   border-bottom-right-radius: 1rem;
   border-top-right-radius: 1rem;
-  border-left: 1.5rem solid #b1acaa;
+  border-left: 1.5rem solid;
+  border-image: url("../images/font-book.jpg");
   font-size: 1.5rem;
   right: 9.7%;
   position: absolute;
   z-index: -1;
-  box-shadow: 4px 2px 3px rgb(66, 66, 66);
+  box-shadow: 2px 2px 1px rgba(102, 93, 93, 1),4px 4px 2px rgba(148, 148, 148, 1),6px 6px 3px rgba(161, 161, 161, 1),8px 8px 4px rgba(176, 176, 176, 1);
 }
 
 .pages {
@@ -67,5 +69,5 @@
 }
 
 .boxShadow {
-  box-shadow: 4px 2px 3px rgb(66, 66, 66);
+  box-shadow: 2px 2px 1px rgba(102, 93, 93, 1),4px 4px 2px rgba(148, 148, 148, 1),6px 6px 3px rgba(161, 161, 161, 1),8px 8px 4px rgba(176, 176, 176, 1);
 }

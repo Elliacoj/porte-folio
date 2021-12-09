@@ -87,14 +87,14 @@ function prodConfig() {
                 },
 
                 // Configuration de babel pour les navigateurs plus anciens.
-                {
+                /*{
                     test: /\.js$/,
                     loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env'],
                         plugins: ['@babel/plugin-proposal-object-rest-spread']
                     }
-                },
+                },*/
             ]
         },
 
