@@ -1,4 +1,4 @@
-import {ContentPage} from "./ContentPage";
+import {ContentPageCv} from "./ContentPageCv";
 
 class Label {
     /**
@@ -10,7 +10,7 @@ class Label {
         this.labelDiv = document.createElement("div");
         this.cv = document.createElement("div");
         this.project = document.createElement("div");
-        this.state = true;
+        this.state = "home";
     }
 
     /**
@@ -34,8 +34,8 @@ class Label {
      */
     clickPage() {
         this.cv.addEventListener("click", () => {
-            if(this.state === true) {
-                let contentPage = new ContentPage();
+            if(this.state === "home") {
+                let contentPage = new ContentPageCv();
                 contentPage.init();
                 contentPage.cvPage(0);
                 document.getElementById("pageRight").style.display = "flex";
@@ -53,13 +53,18 @@ class Label {
                 }, 100);
 
                 this.flipPage("-100%", "-1");
-                this.state = false;
+                this.state = "cv";
+            }
+            else if(this.state !== "cv") {
+                let contentPage = new ContentPageCv();
+                contentPage.init();
+                contentPage.cvPage(2);
             }
         });
 
         this.project.addEventListener("click", () => {
-            if(this.state === true) {
-                let contentPage = new ContentPage();
+            if(this.state === "home") {
+                let contentPage = new ContentPageCv();
                 contentPage.projectPage();
 
                 document.getElementById("pageRight").style.display = "flex";
@@ -77,12 +82,12 @@ class Label {
                 }, 100);
 
                 this.flipPage("-100%", "-1");
-                this.state = false;
+                this.state = "project";
             }
         });
 
         this.home.addEventListener("click", () => {
-            if(this.state === false) {
+            if(this.state !== "home") {
                 document.getElementById("bookDivBack").style.zIndex = "-1";
                 this.flipPage("-50%", "0");
 
@@ -102,7 +107,7 @@ class Label {
                     document.getElementById("subPageRight").style.display = "none";
                 }, 300);
 
-                this.state = true;
+                this.state = "home";
             }
         });
 

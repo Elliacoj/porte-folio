@@ -1,6 +1,6 @@
 import {logPlugin} from "@babel/preset-env/lib/debug";
 
-class ContentPage {
+class ContentPageCv {
     /**
      * Constructor
      */
@@ -47,7 +47,7 @@ class ContentPage {
      * Init the content of cv into pages
      * @returns
      */
-    cvPage(action = 0) {
+    cvPage(action = 0, book = 0) {
         if(action === 0) {
             this.pageLeft.innerHTML = "";
             this.pageRight.innerHTML = "";
@@ -85,6 +85,9 @@ class ContentPage {
             }, 320);
         }
         else if(action === 2) {
+            if(book === 0) {
+                this.flipPage("-114%", "-1", document.getElementById("pageLeft"));
+            }
             document.getElementById("bookDiv").style.zIndex = "15";
             this.subPageLeft.innerHTML = "";
             this.subPageLeft.appendChild(this.divOne);
@@ -290,4 +293,4 @@ class ContentPage {
         });
     }
 }
-export {ContentPage}
+export {ContentPageCv}
