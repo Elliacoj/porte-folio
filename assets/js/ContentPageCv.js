@@ -13,8 +13,6 @@ class ContentPageCv {
         this.divTwo = document.createElement("div");
         this.divThree = document.createElement("div");
         this.divFour = document.createElement("div");
-        this.buttonNext = document.createElement("div");
-        this.buttonPrevious = document.createElement("div");
 
         this.studdyDate = [
             "2020 - 2021", "2017 - 2018", "2016 - 2017", "2016", "2011", "2011"
@@ -71,7 +69,7 @@ class ContentPageCv {
                 this.pageRight.style.display = "none";
                 this.pageRight.innerHTML = this.subPageRight.innerHTML;
 
-                this.flipRevers("0%", "1", document.getElementById("pageRight"));
+                this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
 
                 setTimeout(() => {
                     this.pageRight.style.display = "flex";
@@ -106,7 +104,7 @@ class ContentPageCv {
                 this.pageRight.style.display = "none";
                 this.pageLeft.innerHTML = this.subPageLeft.innerHTML;
 
-                this.flipRevers("0%", "1", document.getElementById("pageLeft"));
+                this.flipPage("0%", "1", document.getElementById("pageLeft"), 1);
 
                 setTimeout(() => {
                     document.getElementById("bookDiv").style.zIndex = "0";
@@ -170,13 +168,15 @@ class ContentPageCv {
         ];
 
         assetH.innerHTML = "Atouts";
-        this.buttonNext.innerHTML = "Page suivante >";
-        this.buttonNext.id = "buttonNext";
+        let buttonNext = document.createElement("div");
+
+        buttonNext.innerHTML = "Page suivante >";
+        buttonNext.className = "buttonNext";
         this.divTwo.appendChild(assetH);
         this.data(asset, this.divTwo);
 
-        this.divTwo.appendChild(this.buttonNext);
-        this.buttonNext.addEventListener("click", () => this.clickNext());
+        this.divTwo.appendChild(buttonNext);
+        buttonNext.addEventListener("click", () => this.click(1, document.getElementById("pageRight")));
     }
 
     /**
@@ -184,8 +184,10 @@ class ContentPageCv {
      */
     pageThreeCv() {
         let studyH = document.createElement("h2");
-        this.buttonPrevious.innerHTML = "< Page précédente";
-        this.buttonPrevious.id = "buttonPrevious";
+        let buttonPrevious = document.createElement("div");
+
+        buttonPrevious.innerHTML = "< Page précédente";
+        buttonPrevious.className = "buttonPrevious";
         studyH.innerHTML = "Etudes et formations";
         this.divThree.appendChild(studyH);
 
@@ -197,8 +199,8 @@ class ContentPageCv {
                 this.divThree.appendChild(div);
             }
         }
-        this.divThree.appendChild(this.buttonPrevious);
-        this.buttonPrevious.addEventListener("click", () => this.clickPrevious());
+        this.divThree.appendChild(buttonPrevious);
+        buttonPrevious.addEventListener("click", () => this.click(2, document.getElementById("pageLeft")));
     }
 
     /**
@@ -247,17 +249,9 @@ class ContentPageCv {
     /**
      * Change page right on click
      */
-    clickNext() {
-        this.cvPage(1);
-        this.flipPage("-114%", "-1", document.getElementById("pageRight"));
-    }
-
-    /**
-     * Change page left on click
-     */
-    clickPrevious() {
-        this.cvPage(2);
-        this.flipPage("-114%", "-1", document.getElementById("pageLeft"));
+    click(action, element) {
+        this.cvPage(action);
+        this.flipPage("-114%", "-1", element);
     }
 
     /**
@@ -265,31 +259,15 @@ class ContentPageCv {
      * @param translate
      * @param scale
      * @param page
+     * @param duration
      */
-    flipPage(translate, scale, page) {
+    flipPage(translate, scale, page, duration = 300) {
         page.animate([
             {
                 transform: 'translate(' + translate + ') scaleX(' + scale + ')',
             },
         ], {
-            duration: 300,
-            fill: "forwards"
-        });
-    }
-
-    /**
-     * Animation return for change page
-     * @param translate
-     * @param scale
-     * @param page
-     */
-    flipRevers(translate, scale, page) {
-        page.animate([
-            {
-                transform: 'translate(' + translate + ') scaleX(' + scale + ')',
-            },
-        ], {
-            duration: 1,
+            duration: duration,
             fill: "forwards"
         });
     }

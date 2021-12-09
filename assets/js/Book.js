@@ -42,6 +42,9 @@ class Book {
         this.container.appendChild(this.divBack);
     }
 
+    /**
+     * Add class for different elements
+     */
     addClassId() {
         this.title.className = "contentBook";
         this.content.className = "contentBook";
