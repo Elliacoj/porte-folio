@@ -108,9 +108,7 @@ class Label {
 
         this.home.addEventListener("click", () => {
             if(this.state !== "home") {
-                if(screen.width > "850") {
-                    document.getElementById("bookDivBack").style.zIndex = "-1";
-                }
+                document.getElementById("bookDivBack").style.zIndex = "-1";
 
                 this.flipPage("-50%", "0");
 

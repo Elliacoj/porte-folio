@@ -148,21 +148,23 @@ class ContentPageCv {
         }
         else if(action === 2) {
             if(page === 1) {
+                document.getElementById("bookDivBack").style.zIndex = "-1";
+                this.divOne.style.cssText = "transform: rotateY(0)";
                 this.pageLeft.innerHTML = "";
                 this.pageLeft.appendChild(this.divOne);
 
-                /*setTimeout(() => {
-                    this.pageRight.style.display = "none";
-                    this.pageRight.innerHTML = this.subPageRight.innerHTML;
-
-                    this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
+                setTimeout(() => {
+                    this.pageLeft.style.display = "none";
+                    this.pageRight.innerHTML = this.pageLeft.innerHTML;
+                    document.getElementById("bookDivBack").style.zIndex = "10";
+                    this.flipPage("0", "1", document.getElementById("pageLeft"), 1);
 
                     setTimeout(() => {
-                        this.pageRight.style.display = "flex";
-                        this.pageRight.innerHTML = '';
-                        this.pageRight.appendChild(this.divThree);
+                        this.pageLeft.style.display = "flex";
+                        this.pageRight.innerHTML = "";
+                        this.pageRight.appendChild(this.divOne)
                     }, 10);
-                }, 320);*/
+                }, 320);
             }
             else if(page === 2) {
                 this.subPageRight.innerHTML = "";
@@ -182,7 +184,23 @@ class ContentPageCv {
                 }, 320);
             }
             else if(page === 3) {
+                document.getElementById("bookDivBack").style.zIndex = "-1";
+                this.divTwo.style.cssText = "transform: rotateY(0)";
+                this.pageLeft.innerHTML = "";
+                this.pageLeft.appendChild(this.divTwo);
 
+                setTimeout(() => {
+                    this.pageLeft.style.display = "none";
+                    this.pageRight.innerHTML = this.pageLeft.innerHTML;
+                    document.getElementById("bookDivBack").style.zIndex = "10";
+                    this.flipPage("0", "1", document.getElementById("pageLeft"), 1);
+
+                    setTimeout(() => {
+                        this.pageLeft.style.display = "flex";
+                        this.pageRight.innerHTML = "";
+                        this.pageRight.appendChild(this.divTwo)
+                    }, 10);
+                }, 320);
             }
             else if(page === 4) {
                 this.subPageRight.innerHTML = "";
@@ -202,7 +220,23 @@ class ContentPageCv {
                 }, 320);
             }
             else if(page === 5) {
+                document.getElementById("bookDivBack").style.zIndex = "-1";
+                this.divThree.style.cssText = "transform: rotateY(0)";
+                this.pageLeft.innerHTML = "";
+                this.pageLeft.appendChild(this.divThree);
 
+                setTimeout(() => {
+                    this.pageLeft.style.display = "none";
+                    this.pageRight.innerHTML = this.pageLeft.innerHTML;
+                    document.getElementById("bookDivBack").style.zIndex = "10";
+                    this.flipPage("0", "1", document.getElementById("pageLeft"), 1);
+
+                    setTimeout(() => {
+                        this.pageLeft.style.display = "flex";
+                        this.pageRight.innerHTML = "";
+                        this.pageRight.appendChild(this.divThree)
+                    }, 10);
+                }, 320);
             }
         }
     }
@@ -265,8 +299,11 @@ class ContentPageCv {
         this.data(asset, this.divTwo);
 
         this.divTwo.appendChild(buttonNext);
-        buttonNext.addEventListener("click", () => this.click(2, document.getElementById("pageRight"), 2));
+        if(screen.width > "850") {
+            buttonNext.addEventListener("click", () => this.click(1, document.getElementById("pageRight"), 2));
+        }
 
+        this.addButton("buttonNext", document.getElementById("pageRight"), 2, "Page suivante >", this.divTwo, 2);
         this.addButton("buttonPrevious", document.getElementById("pageLeft"), 2, "< Page précédente", this.divTwo, 1);
     }
 
@@ -290,6 +327,7 @@ class ContentPageCv {
                 this.divThree.appendChild(div);
             }
         }
+
         this.divThree.appendChild(buttonPrevious);
         buttonPrevious.addEventListener("click", () => this.click(2, document.getElementById("pageLeft"), 3));
         this.addButton("buttonNext", document.getElementById("pageRight"), 2, "Page suivante >", this.divThree, 4);
@@ -350,8 +388,8 @@ class ContentPageCv {
             this.cvPage(action);
         }
 
-        if(page === 1) {
-            this.flipPage("114%", "-1", element);
+        if((page === 1 || page === 3 || page === 5) && screen.width <= "850") {
+            this.flipPage("-104.5%", "-1", element);
         }
         else {
             this.flipPage("-114%", "-1", element);
@@ -368,6 +406,7 @@ class ContentPageCv {
      */
     flipPage(translate, scale, page, duration = 300) {
         if(screen.width <= "850") {
+            console.log("ok");
             page.animate([
                 {
                     transform: 'translateY(' + translate + ') scaleY(' + scale + ')'
