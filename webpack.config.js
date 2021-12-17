@@ -5,7 +5,7 @@ module.exports = (env, argv) => {
     const config = argv.mode === 'development' ? devConfig() : prodConfig();
     return {
         entry: {
-            front: "./assets/front.js",
+            front: "./assets/front.ts",
         },
 
         output: {
@@ -25,7 +25,6 @@ module.exports = (env, argv) => {
  * Mode dev
  */
 function devConfig() {
-
     return {
         mode: 'development',
         devtool: 'source-map',
@@ -34,6 +33,11 @@ function devConfig() {
                 {
                     test: /\.(s)css$/i,
                     use: ["style-loader", "css-loader", "sass-loader"]
+                },
+                {
+                  test: /\.tsx?$/,
+                  use: 'ts-loader',
+                  exclude: /node_modules/,
                 },
                 // Règles fichiers images
                 {
@@ -88,7 +92,7 @@ function prodConfig() {
 
                 // Configuration de babel pour les navigateurs plus anciens.
                 /*{
-                    test: /\.js$/,
+                    test: /\.ts$/,
                     loader: 'babel-loader',
                     options: {
                         presets: ['@babel/preset-env'],

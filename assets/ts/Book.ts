@@ -1,25 +1,38 @@
-class Book {
+
+export class Books {
+    public container: HTMLDivElement;
+    public divContainer: HTMLDivElement;
+    public divBack: HTMLDivElement;
+    public title: HTMLDivElement;
+    public signing: HTMLDivElement;
+    public content: HTMLDivElement;
+    public pageRight: HTMLDivElement;
+    public pageSubRight: HTMLDivElement;
+    public pageLeft: HTMLDivElement;
+    public pageSubLeft: HTMLDivElement;
+
+
     /**
      * Constructor
      */
     constructor() {
-        this.container = document.getElementById("container");
-        this.divContainer = document.createElement("div");
-        this.divBack = document.createElement("div");
-        this.title = document.createElement("div");
-        this.content = document.createElement("div");
-        this.signing = document.createElement("div");
-        this.pageRight = document.createElement("div");
-        this.pageLeft = document.createElement("div");
-        this.pageSubRight = document.createElement("div");
-        this.pageSubLeft = document.createElement("div");
+        this.container = document.getElementById("container") as HTMLDivElement;
+        this.divContainer = document.createElement("div") as HTMLDivElement;
+        this.divBack = document.createElement("div") as HTMLDivElement;
+        this.title = document.createElement("div") as HTMLDivElement;
+        this.content = document.createElement("div") as HTMLDivElement;
+        this.signing = document.createElement("div") as HTMLDivElement;
+        this.pageRight = document.createElement("div") as HTMLDivElement;
+        this.pageLeft = document.createElement("div") as HTMLDivElement;
+        this.pageSubRight = document.createElement("div") as HTMLDivElement;
+        this.pageSubLeft = document.createElement("div") as HTMLDivElement;
     }
 
     /**
      * Init the book into the container.
      * Write the content of page
      */
-    async init() {
+    public async init(): Promise<void> {
         this.divContainer.id = "bookDiv";
         this.divBack.id = "bookDivBack";
         this.title.innerHTML = "Portfolio";
@@ -45,7 +58,7 @@ class Book {
     /**
      * Add class for different elements
      */
-    addClassId() {
+    public addClassId():void {
         this.title.className = "contentBook";
         this.content.className = "contentBook";
         this.signing.className = "contentBook";
@@ -61,4 +74,3 @@ class Book {
         this.pageSubLeft.className = "pages";
     }
 }
-export {Book};

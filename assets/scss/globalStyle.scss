@@ -2,9 +2,8 @@
 @use "contentPage";
 
 body {
-  background-size: cover;
   /*background-image: url("../images/font.png");*/
-  background: linear-gradient(170deg, rgba(222,222,222,1) 0%, rgba(176,176,176,1) 100%);
+  background: rgba(176,176,176,1);
 
   font-family: "Agency FB", sans-serif;
 }
@@ -47,6 +46,10 @@ body {
 }
 
 @media screen and (max-width: 850px) {
+  #container {
+    width: 46rem;
+  }
+
   #bookDiv, #bookDivBack {
     border-bottom-left-radius: 1rem;
     border-top-right-radius: 0;
@@ -60,5 +63,23 @@ body {
 
   #subPageRight {
     left: 3.7%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  html {
+    font-size: 78%;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  html {
+    font-size: 68%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  html {
+    font-size: 58%;
   }
 }

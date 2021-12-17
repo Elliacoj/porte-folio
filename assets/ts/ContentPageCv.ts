@@ -1,18 +1,27 @@
-import {logPlugin} from "@babel/preset-env/lib/debug";
-
 class ContentPageCv {
+    public pageLeft: HTMLDivElement;
+    public pageRight: HTMLDivElement;
+    public subPageLeft: HTMLDivElement;
+    public subPageRight: HTMLDivElement;
+    public divOne: HTMLDivElement;
+    public divTwo: HTMLDivElement;
+    public divThree: HTMLDivElement;
+    public divFour: HTMLDivElement;
+    public studdyDate: string[];
+    public studdyContent: string[];
+
     /**
      * Constructor
      */
     constructor() {
-        this.pageLeft = document.getElementById("pageLeft");
-        this.pageRight = document.getElementById("pageRight");
-        this.subPageLeft = document.getElementById("subPageLeft");
-        this.subPageRight = document.getElementById("subPageRight");
-        this.divOne = document.createElement("div");
-        this.divTwo = document.createElement("div");
-        this.divThree = document.createElement("div");
-        this.divFour = document.createElement("div");
+        this.pageLeft = document.getElementById("pageLeft") as HTMLDivElement;
+        this.pageRight = document.getElementById("pageRight") as HTMLDivElement;
+        this.subPageLeft = document.getElementById("subPageLeft") as HTMLDivElement;
+        this.subPageRight = document.getElementById("subPageRight") as HTMLDivElement;
+        this.divOne = document.createElement("div") as HTMLDivElement;
+        this.divTwo = document.createElement("div") as HTMLDivElement;
+        this.divThree = document.createElement("div") as HTMLDivElement;
+        this.divFour = document.createElement("div") as HTMLDivElement;
 
         this.studdyDate = [
             "2020 - 2021", "2017 - 2018", "2016 - 2017", "2016", "2011", "2011"
@@ -34,7 +43,7 @@ class ContentPageCv {
     /**
      * Init content pages
      */
-    init() {
+    public init():void {
         this.pageOneCV();
         this.pageTwoCv();
         this.pageFourCv();
@@ -45,7 +54,7 @@ class ContentPageCv {
      * Init the content of cv into pages
      * @returns
      */
-    cvPage(action = 0, book = 0) {
+    public cvPage(action:number = 0, book:number = 0) {
         if(action === 0) {
             this.pageLeft.innerHTML = "";
             this.pageRight.innerHTML = "";
@@ -69,7 +78,7 @@ class ContentPageCv {
                 this.pageRight.style.display = "none";
                 this.pageRight.innerHTML = this.subPageRight.innerHTML;
 
-                this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
+                this.flipPage("0%", "1", document.getElementById("pageRight")!, 1);
 
                 setTimeout(() => {
                     this.pageRight.style.display = "flex";
@@ -84,10 +93,10 @@ class ContentPageCv {
         }
         else if(action === 2) {
             if(book === 1) {
-                this.flipPage("-114%", "-1", document.getElementById("pageLeft"));
+                this.flipPage("-114%", "-1", document.getElementById("pageLeft")!);
             }
             this.divTwo.style.cssText = "transform: rotateY(0)";
-            document.getElementById("bookDiv").style.zIndex = "15";
+            document.getElementById("bookDiv")!.style.zIndex = "15";
             this.subPageLeft.innerHTML = "";
             this.subPageLeft.appendChild(this.divOne);
 
@@ -104,10 +113,10 @@ class ContentPageCv {
                 this.pageRight.style.display = "none";
                 this.pageLeft.innerHTML = this.subPageLeft.innerHTML;
 
-                this.flipPage("0%", "1", document.getElementById("pageLeft"), 1);
+                this.flipPage("0%", "1", document.getElementById("pageLeft")!, 1);
 
                 setTimeout(() => {
-                    document.getElementById("bookDiv").style.zIndex = "0";
+                    document.getElementById("bookDiv")!.style.zIndex = "0";
                     this.pageRight.style.display = "flex";
                     this.pageRight.innerHTML = '';
                     this.pageRight.appendChild(this.divTwo);
@@ -124,7 +133,7 @@ class ContentPageCv {
      * Init the content of cv into pages for responsive
      * @returns
      */
-    cvPageResponsive(action = 0, page = 0) {
+    public cvPageResponsive(action:number = 0, page:number = 0):void {
         if(action === 0) {
             this.pageRight.innerHTML = "";
             this.pageRight.appendChild(this.divOne);
@@ -137,7 +146,7 @@ class ContentPageCv {
                 this.pageRight.style.display = "none";
                 this.pageRight.innerHTML = this.subPageRight.innerHTML;
 
-                this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
+                this.flipPage("0%", "1", document.getElementById("pageRight")!, 1);
 
                 setTimeout(() => {
                     this.pageRight.style.display = "flex";
@@ -148,7 +157,7 @@ class ContentPageCv {
         }
         else if(action === 2) {
             if(page === 1) {
-                document.getElementById("bookDivBack").style.zIndex = "-1";
+                document.getElementById("bookDivBack")!.style.zIndex = "-1";
                 this.divOne.style.cssText = "transform: rotateY(0)";
                 this.pageLeft.innerHTML = "";
                 this.pageLeft.appendChild(this.divOne);
@@ -156,8 +165,8 @@ class ContentPageCv {
                 setTimeout(() => {
                     this.pageLeft.style.display = "none";
                     this.pageRight.innerHTML = this.pageLeft.innerHTML;
-                    document.getElementById("bookDivBack").style.zIndex = "10";
-                    this.flipPage("0", "1", document.getElementById("pageLeft"), 1);
+                    document.getElementById("bookDivBack")!.style.zIndex = "10";
+                    this.flipPage("0", "1", document.getElementById("pageLeft")!, 1);
 
                     setTimeout(() => {
                         this.pageLeft.style.display = "flex";
@@ -174,7 +183,7 @@ class ContentPageCv {
                     this.pageRight.style.display = "none";
                     this.pageRight.innerHTML = this.subPageRight.innerHTML;
 
-                    this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
+                    this.flipPage("0%", "1", document.getElementById("pageRight")!, 1);
 
                     setTimeout(() => {
                         this.pageRight.style.display = "flex";
@@ -184,7 +193,7 @@ class ContentPageCv {
                 }, 320);
             }
             else if(page === 3) {
-                document.getElementById("bookDivBack").style.zIndex = "-1";
+                document.getElementById("bookDivBack")!.style.zIndex = "-1";
                 this.divTwo.style.cssText = "transform: rotateY(0)";
                 this.pageLeft.innerHTML = "";
                 this.pageLeft.appendChild(this.divTwo);
@@ -192,8 +201,8 @@ class ContentPageCv {
                 setTimeout(() => {
                     this.pageLeft.style.display = "none";
                     this.pageRight.innerHTML = this.pageLeft.innerHTML;
-                    document.getElementById("bookDivBack").style.zIndex = "10";
-                    this.flipPage("0", "1", document.getElementById("pageLeft"), 1);
+                    document.getElementById("bookDivBack")!.style.zIndex = "10";
+                    this.flipPage("0", "1", document.getElementById("pageLeft")!, 1);
 
                     setTimeout(() => {
                         this.pageLeft.style.display = "flex";
@@ -210,7 +219,7 @@ class ContentPageCv {
                     this.pageRight.style.display = "none";
                     this.pageRight.innerHTML = this.subPageRight.innerHTML;
 
-                    this.flipPage("0%", "1", document.getElementById("pageRight"), 1);
+                    this.flipPage("0%", "1", document.getElementById("pageRight")!, 1);
 
                     setTimeout(() => {
                         this.pageRight.style.display = "flex";
@@ -220,7 +229,7 @@ class ContentPageCv {
                 }, 320);
             }
             else if(page === 5) {
-                document.getElementById("bookDivBack").style.zIndex = "-1";
+                document.getElementById("bookDivBack")!.style.zIndex = "-1";
                 this.divThree.style.cssText = "transform: rotateY(0)";
                 this.pageLeft.innerHTML = "";
                 this.pageLeft.appendChild(this.divThree);
@@ -228,8 +237,8 @@ class ContentPageCv {
                 setTimeout(() => {
                     this.pageLeft.style.display = "none";
                     this.pageRight.innerHTML = this.pageLeft.innerHTML;
-                    document.getElementById("bookDivBack").style.zIndex = "10";
-                    this.flipPage("0", "1", document.getElementById("pageLeft"), 1);
+                    document.getElementById("bookDivBack")!.style.zIndex = "10";
+                    this.flipPage("0", "1", document.getElementById("pageLeft")!, 1);
 
                     setTimeout(() => {
                         this.pageLeft.style.display = "flex";
@@ -244,19 +253,19 @@ class ContentPageCv {
     /**
      * Content for page one of CV
      */
-    pageOneCV() {
-        let h1 = document.createElement("h1");
-        let personalInfoH = document.createElement("h2");
-        let skillsH = document.createElement("h2");
-        let divPersonal = document.createElement("div");
+    public pageOneCV():void {
+        let h1 = document.createElement("h1") as HTMLElement;
+        let personalInfoH = document.createElement("h2") as HTMLElement;
+        let skillsH = document.createElement("h2") as HTMLElement;
+        let divPersonal = document.createElement("div") as HTMLDivElement;
 
-        let personalInfo = [
+        let personalInfo: string[] = [
             "<i class='far fa-map'></i> Rue de la Station 5", "<i class='fas fa-mail-bulk'></i> 6590", "<i class='far fa-flag'></i> Momignies",
             "<i class='fas fa-globe-europe'></i> Belgique", "<i class='fas fa-phone-square-alt'></i> +32 493 07 90 96", "<i class='fas fa-at'></i> amaury.jocaille@hotmail.com",
             "<i class='fas fa-car'></i> Permis B + voiture"
         ];
 
-        let skills = [
+        let skills: string[] = [
             "A l'aise avec l'intégration du front-end et le back-end (avec une préférence pour le back-end).",
             "Connaissance de plusieurs language de programmation (PHP, JS, HTML, CSS, SQL).",
             "Connaissance de plusieurs gestionnaires de paquets (Composer, npm)",
@@ -278,20 +287,20 @@ class ContentPageCv {
         this.divOne.appendChild(skillsH);
         this.data(skills, this.divOne);
 
-        this.addButton("buttonNext", document.getElementById("pageRight"), 1, "Page suivante >", this.divOne, 0);
+        this.addButton("buttonNext", document.getElementById("pageRight")!, 1, "Page suivante >", this.divOne, 0);
     }
 
     /**
      * Content for page two of CV
      */
-    pageTwoCv() {
-        let assetH = document.createElement("h2");
-        let asset = [
+    public pageTwoCv():void {
+        let assetH = document.createElement("h2") as HTMLElement;
+        let asset: string[] = [
             "Capacités organisationnelles", "Soigneux et méticuleux", "Intégration facile dans une équipe", "Autonome", "Résistant au stress"
         ];
 
         assetH.innerHTML = "Atouts";
-        let buttonNext = document.createElement("div");
+        let buttonNext = document.createElement("div") as HTMLDivElement;
 
         buttonNext.innerHTML = "Page suivante >";
         buttonNext.className = "buttonNext";
@@ -299,29 +308,29 @@ class ContentPageCv {
         this.data(asset, this.divTwo);
 
         this.divTwo.appendChild(buttonNext);
-        if(screen.width > "850") {
-            buttonNext.addEventListener("click", () => this.click(1, document.getElementById("pageRight"), 2));
+        if(screen.width > 850) {
+            buttonNext.addEventListener("click", () => this.click(1, document.getElementById("pageRight")!, 2));
         }
 
-        this.addButton("buttonNext", document.getElementById("pageRight"), 2, "Page suivante >", this.divTwo, 2);
-        this.addButton("buttonPrevious", document.getElementById("pageLeft"), 2, "< Page précédente", this.divTwo, 1);
+        this.addButton("buttonNext", document.getElementById("pageRight")!, 2, "Page suivante >", this.divTwo, 2);
+        this.addButton("buttonPrevious", document.getElementById("pageLeft")!, 2, "< Page précédente", this.divTwo, 1);
     }
 
     /**
      * Content for page three of CV
      */
-    pageThreeCv() {
-        let studyH = document.createElement("h2");
-        let buttonPrevious = document.createElement("div");
+    public pageThreeCv():void {
+        let studyH = document.createElement("h2") as HTMLElement;
+        let buttonPrevious = document.createElement("div") as HTMLDivElement;
 
         buttonPrevious.innerHTML = "< Page précédente";
         buttonPrevious.className = "buttonPrevious";
         studyH.innerHTML = "Etudes et formations";
         this.divThree.appendChild(studyH);
 
-        for(let x = 0; x < this.studdyContent.length; x++) {
+        for(let x:number = 0; x < this.studdyContent.length; x++) {
             if(x <= 4 ) {
-                let div = document.createElement("div");
+                let div = document.createElement("div") as HTMLDivElement;
                 div.style.cssText = "padding: 0.7rem 4%";
                 div.innerHTML = "<p>" + this.studdyDate[x] + "</p><p>" + this.studdyContent[x] + "</p>";
                 this.divThree.appendChild(div);
@@ -329,29 +338,29 @@ class ContentPageCv {
         }
 
         this.divThree.appendChild(buttonPrevious);
-        buttonPrevious.addEventListener("click", () => this.click(2, document.getElementById("pageLeft"), 3));
-        this.addButton("buttonNext", document.getElementById("pageRight"), 2, "Page suivante >", this.divThree, 4);
+        buttonPrevious.addEventListener("click", () => this.click(2, document.getElementById("pageLeft")!, 3));
+        this.addButton("buttonNext", document.getElementById("pageRight")!, 2, "Page suivante >", this.divThree, 4);
     }
 
     /**
      * Content for page four of CV
      */
-    pageFourCv() {
-        for(let x = 5; x < this.studdyContent.length; x++) {
+    public pageFourCv():void {
+        for(let x:number = 5; x < this.studdyContent.length; x++) {
             if(x <= 10 ) {
-                let div = document.createElement("div");
+                let div = document.createElement("div") as HTMLDivElement;
                 div.style.cssText = "padding: 0.7rem 4%";
                 div.innerHTML = "<p>" + this.studdyDate[x] + "</p><p>" + this.studdyContent[x] + "</p>";
                 this.divFour.appendChild(div);
             }
         }
-        this.addButton("buttonPrevious", document.getElementById("pageLeft"), 2, "< Page précédente", this.divFour, 5);
+        this.addButton("buttonPrevious", document.getElementById("pageLeft")!, 2, "< Page précédente", this.divFour, 5);
     }
 
     /**
      * Init the content project into pages
      */
-    projectPage() {
+    public projectPage():void {
         this.pageLeft.innerHTML = "";
         this.pageRight.innerHTML = "";
     }
@@ -362,10 +371,10 @@ class ContentPageCv {
      * @param page
      * @param check
      */
-    data(array, page, check = false) {
+    public data(array: string[], page:HTMLElement, check:boolean = false):void {
         array.forEach(e => {
             let div = document.createElement("div");
-            if(check === true) {
+            if(check) {
                 div.style.cssText = "width: 42%; padding: 0.5rem 4%";
             }
             else {
@@ -380,15 +389,15 @@ class ContentPageCv {
     /**
      * Change page right on click
      */
-    click(action, element, page = 0) {
-        if(screen.width <= "850") {
+    public click(action:number, element:HTMLElement, page:number = 0):void {
+        if(screen.width <= 850) {
             this.cvPageResponsive(action, page);
         }
         else {
             this.cvPage(action);
         }
 
-        if((page === 1 || page === 3 || page === 5) && screen.width <= "850") {
+        if((page === 1 || page === 3 || page === 5) && screen.width <= 850) {
             this.flipPage("-104.5%", "-1", element);
         }
         else {
@@ -404,8 +413,8 @@ class ContentPageCv {
      * @param page
      * @param duration
      */
-    flipPage(translate, scale, page, duration = 300) {
-        if(screen.width <= "850") {
+    public flipPage(translate:string, scale:string, page:HTMLElement, duration:number = 300):void {
+        if(screen.width <= 850) {
             console.log("ok");
             page.animate([
                 {
@@ -437,8 +446,8 @@ class ContentPageCv {
      * @param container
      * @param page
      */
-    addButton(type, element, action, content, container, page) {
-        if(screen.width <= "850") {
+    public addButton(type:string, element:HTMLElement, action:number, content:string, container:HTMLElement, page:number):void {
+        if(screen.width <= 850) {
             let button = document.createElement("div");
             button.innerHTML = content;
             button.className = type;
